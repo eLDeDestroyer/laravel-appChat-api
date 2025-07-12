@@ -9,7 +9,7 @@ use Validator;
 
 class AuthService
 {
-     protected $repo;
+    protected $repo;
     public function __construct(AuthRepository $repo) {
         $this->repo = $repo;
     }
