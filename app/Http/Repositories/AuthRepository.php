@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class AuthRepository
@@ -20,5 +21,11 @@ class AuthRepository
         $userId = User::where("username", $username)->first()->id;
         
         return $userId;
+    }
+
+    public function addLoginTime(string $username){
+        User::query()->where("username", $username)->update([
+            "last_login" => Carbon::now()
+        ]);
     }
 }

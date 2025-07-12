@@ -37,6 +37,7 @@ class AuthService
         if($validate->fails()) throw new Exception($validate->errors()->first());
         
         $userId = $this->repo->getUserId($data["username"]);
+        $this->repo->addLoginTime($data["username"]);
         
         if(!$token = Auth::guard('api')->claims(["id" => $userId])->attempt($data)){
             return throw new Exception("fails get data");
