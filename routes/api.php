@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -22,4 +23,9 @@ Route::middleware(["auth"])->group(function (){
     Route::post("/auth/friend/add", [FriendController::class,"addFriend"]);
     Route::patch("/auth/friend/update/{friend_id}", [FriendController::class,"updateFriend"]);
     Route::get("/auth/friends", [FriendController::class,"getAllFriends"]);
+
+    Route::get("/auth/chats/{room_id}", [ChatController::class, "getChats"]);
+    Route::post("/auth/chats/add", [ChatController::class, "addChat"]);
+    Route::delete("/auth/chats/delete/{room_id}", [ChatController::class, "deleteChat"]);
+
 });
